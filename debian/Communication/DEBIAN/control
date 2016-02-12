@@ -1,0 +1,9 @@
+Package: libcommunication
+Version: 0.1-0
+Section: base
+Priority: optional
+Architecture: armhf
+Depends: libboost-all-dev (>=1.55.0.2), libsimplesocketpp, libnetconfig, liblog
+Maintainer: Luis Lourenco <luis.lourenco@grupoabl.com.br>
+Description: Socket Communication Library
+ Implements class to Communicate and receive Commands from a server using Socket.

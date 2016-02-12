@@ -1,0 +1,5 @@
+libcommunication (0.1-0) unstable; urgency=low
+
+ * Implements class to Communicate and receive Commands from a server using Socket.
+
+ -- Luis Lourenco <luis.lourenco@grupoabl.com.br> Wed, 12 Feb 2016 18:25:00 -0200
