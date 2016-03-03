@@ -1,5 +1,11 @@
 #include "Config.h"
 
+/* Boost C++ includes */
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+namespace pt = boost::property_tree;
+
+
 namespace Communication
 {
 	Config::Config(QObject* parent, QString f)
@@ -8,7 +14,7 @@ namespace Communication
 		this->configfile = f;
 
 		if (configfile.isNull()) configfile = DEFAULT_CONFIG_FILE;
-		this->logging = new Log::Log(this,configfile);
+		this->logging = new Log::Log(this,configfile,"Communication");
 
 		this->load();
 	}

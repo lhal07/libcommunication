@@ -2,12 +2,7 @@
 #define COMCONFIG_H
 
 #include <QtCore>
-#include "Log.h"
-
-/* Boost C++ includes */
-#include <boost/thread.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+#include <Log.h>
 
 #define DEFAULT_CONFIG_FILE "config.xml"
 
