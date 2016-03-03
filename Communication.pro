@@ -26,12 +26,16 @@ LIBS += -lboost_system\
         -lboost_thread\
         -lnetconfig\
         -lsimplesocket++\
+        -lcurl\
+        -lcurlpp\
         -llog
 
 HEADERS += Command.h\
            Connection.h\
+           Rest.h\
            Config.h
 
 SOURCES += Command.cpp\
            Connection.cpp\
+           Rest.cpp\
            Config.cpp

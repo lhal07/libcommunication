@@ -7,7 +7,7 @@ LIBNAME=lib$(NAME)
 VER=0.1-0
 TARGET=usr
 PREFIX=/$(TARGET)
-HEADERS=../Connection.h ../Command.h ../Config.h
+HEADERS=../Connection.h ../Command.h ../Rest.h ../Config.h
 PKG_DIR=Communication
 PACKAGE=$(LIBNAME)-$(VER).deb
 
