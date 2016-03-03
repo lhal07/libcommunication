@@ -1,3 +1,10 @@
+libcommunication (0.2-0) unstable; urgency=low
+
+ - Adds Rest class
+ - Updates Log library and changes boost includes from header.
+
+ -- Luis Lourenco <luis.lourenco@grupoabl.com.br> Wed, 3 Mar 2016 11:55:00 -0300
+
 libcommunication (0.1-0) unstable; urgency=low
 
  * Implements class to Communicate and receive Commands from a server using Socket.

@@ -9,7 +9,7 @@ QT       += network
 QT       -= gui
 
 TARGET  = communication
-VERSION = 0.1-0
+VERSION = 0.2-0
 CONFIG += shared
 CONFIG += c++
 CONFIG -= app_bundle

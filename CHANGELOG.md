@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.2-0 (alpha)
+
+ - Adds Rest class
+ - Updates Log library and changes boost includes from header.
+
 0.1-0 (alpha)
 
  - Implements class to Communicate and receive Commands from a server using Socket.
