@@ -41,10 +41,10 @@ namespace Communication
 			request.perform();
 		}
 		catch ( curlpp::LogicError & e ) {
-			std::cout << e.what() << std::endl;
+			throw std::runtime_error(e.what());
 		}
 		catch ( curlpp::RuntimeError & e ) {
-			std::cout << e.what() << std::endl;
+			throw std::runtime_error(e.what());
 		}
 
 		 return out.str();

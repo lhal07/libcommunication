@@ -1,8 +1,9 @@
 #ifndef REST_H
 #define REST_H
 
-#include <string>
 #include <QtCore>
+#include <string>
+#include <exception>
 #include "Config.h"
 
 namespace Communication
