@@ -30,12 +30,10 @@ LIBS += -lboost_system\
         -lcurlpp\
         -llog
 
-HEADERS += Command.h\
-           Connection.h\
+HEADERS += Connection.h\
            Rest.h\
            Config.h
 
-SOURCES += Command.cpp\
-           Connection.cpp\
+SOURCES += Connection.cpp\
            Rest.cpp\
            Config.cpp

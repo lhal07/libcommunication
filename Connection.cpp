@@ -2,10 +2,10 @@
 
 namespace Communication
 {
-	Connection::Connection(Command* parent, Config* cfg)
+	Connection::Connection(QObject* parent, QString configfile)
 	{
 		this->parent = parent;
-		this->config = cfg;
+		this->config = new Config(this,configfile);
 		setIP(getServerIP());
 		setPort(getServerPort());
 		this->connected = false;

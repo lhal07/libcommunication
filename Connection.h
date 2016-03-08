@@ -18,12 +18,12 @@ namespace Communication
 	{
 		Q_OBJECT //Enable slots and signals
 		public:
-			Connection(Command* parent=0, Config* cfg=0);
+			Connection(QObject* parent=0, QString configfile=0);
 			~Connection(){};
 			const Connection& operator << (const std::string& value) const;
 			const Connection& operator >> (std::string& value) const;
 		private:
-			Command* parent;
+			QObject* parent;
 			Config* config;
 			std::string ip;
 			int  port;
