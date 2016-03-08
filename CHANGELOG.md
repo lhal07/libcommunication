@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.3-0 (alpha)
+
+ - Removes Command Class
+ - Throws exception on error
+
 0.2-0 (alpha)
 
  - Adds Rest class

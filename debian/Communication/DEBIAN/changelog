@@ -1,7 +1,13 @@
+libcommunication (0.3-0) unstable; urgency=low
+
+ * Removes Command Class
+ * Throws exception on error
+
+ -- Luis Lourenco <luis.lourenco@grupoabl.com.br> Tue, 8 Mar 2016 11:00:00 -0300
 libcommunication (0.2-0) unstable; urgency=low
 
- - Adds Rest class
- - Updates Log library and changes boost includes from header.
+ * Adds Rest class
+ * Updates Log library and changes boost includes from header.
 
  -- Luis Lourenco <luis.lourenco@grupoabl.com.br> Wed, 3 Mar 2016 11:55:00 -0300
 

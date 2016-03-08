@@ -1,9 +1,9 @@
 Package: libcommunication
-Version: 0.2-1
+Version: 0.3-0
 Section: base
 Priority: optional
 Architecture: armhf
-Depends: libboost-all-dev (>=1.55.0.2), libsimplesocketpp, libnetconfig, liblog
+Depends: libboost-all-dev (>=1.55.0.2), libsimplesocketpp, libnetconfig, liblog, libcurl3, libcurlpp0
 Maintainer: Luis Lourenco <luis.lourenco@grupoabl.com.br>
 Description: Socket Communication Library
  Implements class to Communicate and receive Commands from a server using Socket.
