@@ -6,10 +6,11 @@
 
 QT       += core
 QT       += network
+#QT       += concurrent #for Qt5
 QT       -= gui
 
 TARGET  = communication
-VERSION = 0.3-0
+VERSION = 0.4-0
 CONFIG += shared
 CONFIG += c++
 CONFIG -= app_bundle
@@ -31,9 +32,11 @@ LIBS += -lboost_system\
         -llog
 
 HEADERS += Connection.h\
+           SocketConnection.h\
            Rest.h\
            Config.h
 
 SOURCES += Connection.cpp\
+           SocketConnection.cpp\
            Rest.cpp\
            Config.cpp

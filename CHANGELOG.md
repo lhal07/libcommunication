@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.4-0 (alpha)
+
+ - Adds Socket connection Class based on QTcpSocket
+
 0.3-0 (alpha)
 
  - Removes Command Class

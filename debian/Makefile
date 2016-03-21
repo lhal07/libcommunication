@@ -4,10 +4,10 @@ RMDIR=rm -rf
 MKDIR=mkdir -p
 NAME=communication
 LIBNAME=lib$(NAME)
-VER=0.3-0
+VER=0.4-0
 TARGET=usr
 PREFIX=/$(TARGET)
-HEADERS=../Connection.h ../Rest.h ../Config.h
+HEADERS=../Connection.h ../SocketConnection.h ../Rest.h ../Config.h
 PKG_DIR=Communication
 PACKAGE=$(LIBNAME)-$(VER).deb
 
