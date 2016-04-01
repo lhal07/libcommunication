@@ -10,7 +10,7 @@ QT       += network
 QT       -= gui
 
 TARGET  = communication
-VERSION = 0.4-0
+DEFINES += "VERSION=\"$$cat(VERSION)\""
 CONFIG += shared
 CONFIG += c++
 CONFIG -= app_bundle
