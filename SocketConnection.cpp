@@ -83,9 +83,19 @@ namespace Communication
 		this->config = new Config(this,configfile);
 		server = new QTcpServer(this);
 		connect(server, SIGNAL(newConnection()), SLOT(onNewConnection()));
+		connect(this, SIGNAL(write(QTcpSocket*,QByteArray)), this, SLOT(writeData(QTcpSocket*,QByteArray)));
 
 		bool listening = server->listen(QHostAddress::Any, (qint16)config->getServerPort());
 		config->log()->info(std::string(listening?"Listening port ":"Failed to listen port ")+std::to_string(config->getServerPort()));
+	}
+
+	void SocketServer::disconnected()
+	{
+		QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
+		disconnect(socket, SIGNAL(disconnected()));
+		disconnect(socket, SIGNAL(readyRead()));
+		clientConnections.removeAll(socket);
+		socket->deleteLater();
 	}
 
 	void SocketServer::onNewConnection()
@@ -94,50 +104,23 @@ namespace Communication
 		while (server->hasPendingConnections())
 		{
 			QTcpSocket *socket = server->nextPendingConnection();
-			socket->setSocketOption(QAbstractSocket::LowDelayOption, 1);
 			connect(socket, SIGNAL(disconnected()), SLOT(disconnected()));
 			connect(socket, SIGNAL(readyRead()), this, SLOT(readData()));
-			connect(this, SIGNAL(write(QTcpSocket*,QByteArray)), this, SLOT(sendData(QTcpSocket*,QByteArray)));
-			emit newSocketConnected();
-			QtConcurrent::run(this,&SocketServer::runNewConnection,socket);
+			emit newSocketConnected(socket);
+			clientConnections.append(socket);
 		}
 	}
 
-	void SocketServer::runNewConnection(QTcpSocket* client)
-	{
-		QMutex mutex;
-		while(client->isValid())
-		{
-			if(client->state() == QAbstractSocket::ConnectedState)
-			{
-				mutex.lock();
-				if (condition.wait(&mutex))
-				{
-					if (!dataToWrite.isEmpty())
-						emit write(client,dataToWrite);
-				}
-				mutex.unlock();
-			}
-		}
-	}
-
-	void SocketServer::sendData(QTcpSocket* client, QByteArray data)
+	void SocketServer::writeData(QTcpSocket* client, QByteArray data)
 	{
 		client->write(data);
 	}
 
-	void SocketServer::disconnected()
-	{
-		QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
-		disconnect(socket, SIGNAL(disconnected()));
-		disconnect(socket, SIGNAL(readyRead()));
-		socket->deleteLater();
-	}
-
-	void SocketServer::writeData(QByteArray data)
+	void SocketServer::broadcast(QByteArray data)
 	{
 		dataToWrite = data;
-		condition.wakeAll();
+		foreach(QTcpSocket *socket, clientConnections)
+			emit write(socket,data);
 	}
 
 	QByteArray SocketServer::readData()
@@ -145,7 +128,7 @@ namespace Communication
 		QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
 		if (!socket->isValid()) return "";
 		QByteArray data = socket->readLine();
-		emit dataReceived(data);
+		emit dataReceived(socket,data);
 		return data;
 	}
 

@@ -37,24 +37,24 @@ namespace Communication
 			explicit SocketServer(QObject *parent = 0, QString configfile=0);
 
 		public slots:
-			void writeData(QByteArray data);
+			void writeData(QTcpSocket*, QByteArray data);
+			void broadcast(QByteArray);
 			QByteArray readData();
 
 		signals:
-			void dataReceived(QByteArray);
-			void newSocketConnected();
+			void dataReceived(QTcpSocket*, QByteArray);
+			void newSocketConnected(QTcpSocket*);
 			void write(QTcpSocket*, QByteArray);
 
 		private slots:
 			void onNewConnection();
 			void disconnected();
-			void sendData(QTcpSocket*, QByteArray);
 
 		private:
 			QTcpServer* server;
 			Config* config;
 			QByteArray dataToWrite;
+			QList<QTcpSocket *> clientConnections;
 			QWaitCondition condition;
-			void runNewConnection(QTcpSocket*);
 	};
 }
