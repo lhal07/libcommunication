@@ -49,4 +49,30 @@ namespace Communication
 
 		 return out.str();
 	}
+
+	std::string Rest::GET(std::string url)
+	{
+		std::stringstream out;
+
+		try {
+			curlpp::Cleanup cleaner;
+			curlpp::Easy request;
+			curlpp::options::WriteStream ws(&out);
+
+			request.setOpt(ws);
+			request.setOpt(new curlpp::options::Url(url));
+			request.setOpt(new curlpp::options::Verbose(false));
+
+			request.perform();
+		}
+		catch ( curlpp::LogicError & e ) {
+			throw std::runtime_error(e.what());
+		}
+		catch ( curlpp::RuntimeError & e ) {
+			throw std::runtime_error(e.what());
+		}
+
+		return out.str();
+	}
+
 }
